@@ -1,8 +1,11 @@
 import axios from 'axios'
-import AuthService from './auth'
-import { setGlobalLoading } from '../store/global'
 import router from '../router'
+import {
+  setGlobalLoading
+} from '../store/global'
+import AuthService from './auth'
 import UsersService from './users'
+import FeedbacksService from './feedbacks'
 
 const API_ENVS = {
   production: '',
@@ -11,7 +14,7 @@ const API_ENVS = {
 }
 
 const httpClient = axios.create({
-  baseURL: API_ENVS.local
+  baseURL: API_ENVS[process.env.NODE_ENV] || API_ENVS.local
 })
 
 httpClient.interceptors.request.use(config => {
@@ -27,16 +30,18 @@ httpClient.interceptors.response.use((response) => {
   setGlobalLoading(false)
   return response
 }, (error) => {
-  const canThrowAnError = error.request.status = 0 ||
+  const canThrowAnError = error.request.status === 0 ||
     error.request.status === 500
 
   if (canThrowAnError) {
     setGlobalLoading(false)
-    throw new Error('error.message')
+    throw new Error(error.message)
   }
 
-  if (error.status === 401) {
-    router.push({ name: 'Home' })
+  if (error.response.status === 401) {
+    router.push({
+      name: 'Home'
+    })
   }
 
   setGlobalLoading(false)
@@ -45,5 +50,6 @@ httpClient.interceptors.response.use((response) => {
 
 export default {
   auth: AuthService(httpClient),
-  users: UsersService(httpClient)
+  users: UsersService(httpClient),
+  feedbacks: FeedbacksService(httpClient)
 }

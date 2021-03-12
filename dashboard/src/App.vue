@@ -25,9 +25,8 @@ export default {
           router.push({ name: 'Home' })
           return
         }
-        const { data } = await services.uses.getMe()
+        const { data } = await services.users.getMe()
         setCurrentUser(data)
-        console.log('data', data)
       }
     })
   }

@@ -5,7 +5,7 @@
         class="w-full"
         src="../../assets/images/logo_white.png"
         alt="Logo de feedbacker"
-      />
+      >
     </div>
     <div class="flex">
       <ul class="flex list-none">
@@ -22,8 +22,9 @@
           Feedbacks
         </li>
         <li
+          id="logout-button"
           @click="handleLogout"
-          class="px-6 py-2 font-bold bg-white rounded-full cursor-pointer text-brand-main focus: outline-none"
+          class="px-6 py-2 font-bold bg-white rounded-full cursor-pointer text-brand-main focus:outline-none"
         >
           {{ logoutLabel }}
         </li>
@@ -44,10 +45,10 @@ export default {
     const store = useStore('User')
 
     const logoutLabel = computed(() => {
-      if (!store.setCurrentUser.name) {
+      if (!store.currentUser.name) {
         return '...'
       }
-      return '$(store.setCurrentUser.name) (sair)'
+      return `${store.currentUser.name} (sair)`
     })
 
     function handleLogout () {

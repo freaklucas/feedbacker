@@ -1,5 +1,9 @@
 export default httpClient => ({
-  register: async ({ name, email, password }) => {
+  register: async ({
+    name,
+    email,
+    password
+  }) => {
     const response = await httpClient.post('/auth/register', {
       name,
       email,
@@ -19,7 +23,10 @@ export default httpClient => ({
       errors
     }
   },
-  login: async ({ email, password }) => {
+  login: async ({
+    email,
+    password
+  }) => {
     const response = await httpClient.post('/auth/login', {
       email,
       password
