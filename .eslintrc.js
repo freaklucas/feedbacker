@@ -11,6 +11,7 @@ module.exports = {
         'airbnb-base',
         'plugin:vue/vue3-essential',
         'prettier/vue',
+        '@vue/standard',
         'plugin:prettier/recommended'
     ],
     rules: {
@@ -28,4 +29,14 @@ module.exports = {
             'endOfLine': 'auto'
         }]
     },
+    overrides: [
+        {
+            files: [
+                '**/*.spec.js'
+            ],
+            env: {
+                jest:true
+            }
+        }
+    ]
 };
