@@ -39,6 +39,7 @@
             class="cursor-pointer"
           />
           <icon
+            id="generate-apikey"
             @click="handleGenerateApikey"
             name="loading"
             :color="brandColors.graydark"
