@@ -2,8 +2,11 @@
   <div class="flex justify-center w-full h-28 bg-brand-main">
     <header-logged />
   </div>
+
   <div class="flex flex-col items-center justify-center h-64 bg-brand-gray">
-    <h1 class="text-4xl font-back text-center text-gray-800">Credenciais</h1>
+    <h1 class="text-4xl font-black text-center text-gray-800">
+      Credenciais
+    </h1>
     <p class="text-lg text-center text-gray-800 font-regular">
       Guia de instalação e geração de suas credenciais
     </p>
@@ -14,7 +17,7 @@
       <h1 class="text-3xl font-black text-brand-darkgray">
         Instalação e configuração
       </h1>
-       <p class="mt-10 text-lg text-gray-800 font-regular">
+      <p class="mt-10 text-lg text-gray-800 font-regular">
         Este aqui é a sua chave de api
       </p>
 
@@ -28,7 +31,7 @@
         v-else
         class="flex py-3 pl-5 mt-2 rounded justify-between items-center bg-brand-gray w-full lg:w-1/2"
       >
-        <span v-if="state.hasError">Erro ao carregar a apiKey</span>
+        <span v-if="state.hasError">Erro ao carregar a apikey</span>
         <span v-else id="apikey">{{ store.User.currentUser.apiKey }}</span>
         <div class="flex ml-20 mr-5" v-if="!state.hasError">
           <icon
@@ -50,8 +53,9 @@
       </div>
 
       <p class="mt-5 text-lg text-gray-800 font-regular">
-          Cloque o script abaixo em seu site para começar a receber feedbacks
+        Coloque o script abaixo no seu site para começar a receber feedbacks
       </p>
+
       <content-loader
         v-if="store.Global.isLoading || state.isLoading"
         class="rounded"
@@ -60,14 +64,16 @@
       />
       <div
         v-else
-        class="py-3 pl-5 pr-20 mt-2 rounded bg-brand-gray w:full lg:w-2/3 overflow-x-scroll"
+        class="py-3 pl-5 pr-20 mt-2 rounded bg-brand-gray w-full lg:w-2/3 overflow-x-scroll"
       >
         <span v-if="state.hasError">Erro ao carregar o script</span>
         <pre v-else>
-            &lt;
-            script
-            src="https://freaklucas-feedbacker-widget.netlify.app?api_key={{ store.User.currentUser.apiKey }}"
-            &gt;&lt;/script&gt;
+&lt;script
+  defer
+  async
+  onload="init('{{store.User.currentUser.apiKey}}')"
+  src="https://igorhalfeld-feedbacker-widget.netlify.app/init.js"
+&gt;&lt;/script&gt;
         </pre>
       </div>
     </div>
@@ -81,12 +87,11 @@ import HeaderLogged from '../../components/HeaderLogged'
 import ContentLoader from '../../components/ContentLoader'
 import Icon from '../../components/Icon'
 import useStore from '../../hooks/useStore'
-import palette from '.../../../palette'
+import palette from '../../../palette'
 import services from '../../services'
 import { setApiKey } from '../../store/user'
-
 export default {
-  components: { HeaderLogged, Icon, ContentLoader },
+  components: { ContentLoader, HeaderLogged, Icon },
   setup () {
     const store = useStore()
     const toast = useToast()
@@ -95,11 +100,10 @@ export default {
       isLoading: false
     })
     watch(() => store.User.currentUser, () => {
-      if (!store.Global.isLoading && !store.User.currentUser.apikey) {
+      if (!store.Global.isLoading && !store.User.currentUser.apiKey) {
         handleError(true)
       }
     })
-
     function handleError (error) {
       state.isLoading = false
       state.hasError = !!error
@@ -108,7 +112,6 @@ export default {
       try {
         state.isLoading = true
         const { data } = await services.users.generateApikey()
-
         setApiKey(data.apiKey)
         state.isLoading = false
       } catch (error) {
@@ -124,7 +127,6 @@ export default {
         handleError(error)
       }
     }
-
     return {
       state,
       store,

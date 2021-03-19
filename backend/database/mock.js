@@ -7,7 +7,17 @@ module.exports = {
       password: '1234',
       apiKey: ['fcd5015c-10d3-4e9c-b395-ec7ed8850165'],
       createdAt: new Date('2020-09-05').getTime()
-    }
+    },
+
+    {
+      id: 'eab759f8-f238-4ff9-ae91-ee1558982327',
+      name: 'Lucas Oliveira',
+      email: 'lucas@lucas.me',
+      password: '1234',
+      apiKey: ['fcd5015c-10d3-4e9c-b395-ec7ed8850167'],
+      createdAt: new Date('2020-19-05').getTime()
+    },
+
   ],
   feedbacks: [
     {
@@ -74,6 +84,36 @@ module.exports = {
       text: 'Tava bom, agora parece que piorou',
       fingerprint: '490135491',
       id: 'eab759f8-f238-4ff9-ae91-ee1558982329',
+      apiKey: 'fcd5015c-10d3-4e9c-b395-ec7ed8850165',
+      type: 'ISSUE',
+      device: 'Chrome 85.0, macOS 10.14',
+      page: 'https://feedbacker.com/pricing',
+      createdAt: new Date('2020-05-23').getTime()
+    },
+    {
+      text: 'Podia ter um botão de solicitar demo 2',
+      fingerprint: '490135491',
+      id: 'eab759f8-f238-4ff9-ae91-ee1558982327',
+      apiKey: 'fcd5015c-10d3-4e9c-b395-ec7ed8850165',
+      type: 'IDEA',
+      device: 'Chrome 85.0, macOS 10.14',
+      page: 'https://feedbacker.com/pricing',
+      createdAt: new Date('2020-08-23').getTime()
+    },
+    {
+      text: 'Muitos erros slkkkkkkk 2',
+      fingerprint: '490135491',
+      id: 'eab759f8-f238-4ff9-ae91-ee1558982327',
+      apiKey: 'fcd5015c-10d3-4e9c-b395-ec7ed8850165',
+      type: 'ISSUE',
+      device: 'Chrome 85.0, macOS 10.14',
+      page: 'https://feedbacker.com/pricing',
+      createdAt: new Date('2020-05-23').getTime()
+    },
+    {
+      text: 'Tava bom, agora parece que piorou',
+      fingerprint: '490135491',
+      id: 'eab759f8-f238-4ff9-ae91-ee1558982327',
       apiKey: 'fcd5015c-10d3-4e9c-b395-ec7ed8850165',
       type: 'ISSUE',
       device: 'Chrome 85.0, macOS 10.14',
