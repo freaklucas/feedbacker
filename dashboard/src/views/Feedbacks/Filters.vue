@@ -15,12 +15,12 @@
             >
             <div class="flex items-center">
                 <span
-                 :class="`bg-${filter.color}`"
+                 :class="filters.color.bg"
                  class="inline-block w-2 h-2 mr-2 rounded-full"/>
                  {{ filter.label }}
             </div>
             <span
-                :class="filter.active ? `text-${filter.color}` : 'text-brand-graydark'"
+                :class="filter.active ? filters.color.text : 'text-brand-graydark'"
                 class="font-bold"
             >
                 {{ filter.amount }}
@@ -36,10 +36,10 @@ import services from '../../services'
 import useStore from '../../hooks/useStore'
 
 const LABELS = {
-  all: 'Todos',
-  issue: 'Problemas',
-  idea: 'Ideias',
-  other: 'Outros'
+  all: { text: 'text-brand-info', bg: 'bg-brand-info' },
+  issue: { text: 'text-brand-danger', bg: 'bg-brand-danger' },
+  idea: { text: 'text-brand-warning', bg: 'bg-brand-warning' },
+  other: { text: 'text-brand-graydark', bg: 'bg-brand-graydark' }
 }
 
 const COLORS = {
