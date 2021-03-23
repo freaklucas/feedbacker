@@ -20,7 +20,7 @@
                  {{ filter.label }}
             </div>
             <span
-                :class="filter.active ? filters.color.text : 'text-brand-graydark'"
+                :class="filter.active ? filter.color.text : 'text-brand-graydark'"
                 class="font-bold"
             >
                 {{ filter.amount }}
@@ -36,18 +36,18 @@ import services from '../../services'
 import useStore from '../../hooks/useStore'
 
 const LABELS = {
+  all: 'Todos',
+  issue: 'Problemas',
+  idea: 'Ideias',
+  other: 'Outros'
+}
+const COLORS = {
   all: { text: 'text-brand-info', bg: 'bg-brand-info' },
   issue: { text: 'text-brand-danger', bg: 'bg-brand-danger' },
   idea: { text: 'text-brand-warning', bg: 'bg-brand-warning' },
   other: { text: 'text-brand-graydark', bg: 'bg-brand-graydark' }
 }
 
-const COLORS = {
-  all: 'brand-info',
-  issue: 'brand-danger',
-  idea: 'brand-warning',
-  other: 'brand-graydark'
-}
 function applyFiltersStructure (summary) {
   return Object.keys(summary).reduce((acc, cur) => {
     const currentFilter = {
