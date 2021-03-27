@@ -1,15 +1,15 @@
 <template>
     <teleport to="body">
-        <component 
+        <component
             @open-box="handleOpenBox"
             @close-box="handleCloseBox"
-            :is="state.component" 
+            :is="state.component"
         />
     </teleport>
 </template>
 
 <script lang="ts">
-import { defineComponent, reacive } from 'vue'
+import { defineComponent, reactive } from 'vue'
 import Standby from './Standby.vue'
 import Box from './Box.vue'
 
@@ -24,29 +24,29 @@ interface SetupReturn {
 }
 
 export default defineComponent({
-    components: {
-        Standby,
-        Box
-    },
-    setup(): SetupReturn {
-        const state = reactive({
-            component: 'Standby'
-        })
-        
-        function handleOpenBox (): void {
-            state.component = 'Box'
-        }
+  components: {
+    Standby,
+    Box
+  },
+  setup (): SetupReturn {
+    const state = reactive({
+      component: 'Standby'
+    })
 
-        function handleCloseBox (): void {
-            state.component = 'Standby'
-        }
-
-        return {
-            state,
-            handleOpenBox,
-            handleCloseBox
-        }
+    function handleOpenBox (): void {
+      state.component = 'Box'
     }
-    
+
+    function handleCloseBox (): void {
+      state.component = 'Standby'
+    }
+
+    return {
+      state,
+      handleOpenBox,
+      handleCloseBox
+    }
+  }
+
 })
 </script>

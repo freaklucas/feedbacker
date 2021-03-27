@@ -173,7 +173,7 @@ module.exports = {
       regular: ['RobotoRegular'],
       medium: ['RobotoMedium'],
       bold: ['RobotoBold'],
-      back: ['RobotoBlack'],
+      black: ['RobotoBlack'],
       sans: [
         'ui-sans-serif',
         'system-ui',
@@ -865,3 +865,4 @@ module.exports = {
   },
   plugins: []
 }
+
