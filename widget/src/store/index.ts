@@ -9,7 +9,7 @@ export type StoreState = {
     currentPage: string;
 }
 
-const initialState = {
+const initialState: StoreState = {
   currentComponent: 'SelectFeedbackType',
   message: '',
   feedbackType: '',
@@ -20,8 +20,8 @@ const initialState = {
 
 const state = reactive<StoreState>({ ...initialState })
 
-export function setCurrentComponent (component: string): void {
-  state.currentComponent = component
+export function setCurrentComponent (page: string): void {
+  state.currentComponent = page
 }
 
 export function setMessage (message: string): void {
